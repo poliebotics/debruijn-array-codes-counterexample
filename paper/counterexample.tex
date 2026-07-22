@@ -1,0 +1,560 @@
+\documentclass[11pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs}
+\usepackage[margin=1in]{geometry}
+\usepackage{microtype}
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+  pdftitle={A Counterexample to Conjecture 1 on Pseudo-Random Array Codes},
+  pdfauthor={Cathal Ryan Hynes},
+  pdfsubject={Pseudo-random array codes and de Bruijn array codes},
+  pdfkeywords={pseudo-random array code, PRAC, de Bruijn array code,
+    finite fields, linear recurrence}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\newcommand{\F}{\mathbf F}
+\newcommand{\Tr}{\operatorname{Tr}}
+\newcommand{\ord}{\operatorname{ord}}
+
+\title{A Counterexample to Conjecture 1 on\\
+Pseudo-Random Array Codes}
+\author{Cathal Ryan Hynes\\
+\small P.I.G.M.I.E. Ltd. (PolieBotics), Ireland}
+\date{21 July 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+\noindent
+Conjecture 1 of Blackburn, Chee, Etzion and Lao,
+\emph{On de Bruijn Array Codes, Part II: Pseudo-Random Array Codes},
+asserts a product-closure property for certain pseudo-random array codes
+under the side condition \(n_1<r_1<2n_1\).
+We give a counterexample with
+\[
+ (r_1,r_2;n_1,n_2)=(5,117;3,4).
+\]
+Two explicit irreducible binary polynomials of degree \(12\) and exponent
+\(585\) each yield a \((5,117;3,4)\)-PRAC, while their product does not
+yield a \((5,117;3,8)\)-PRAC.
+The failure has a short finite-field certificate: a nonzero binary
+polynomial supported on the \(3\) by \(8\) rectangle vanishes at both
+evaluation pairs.
+A separately written recurrence-and-folding implementation exhaustively
+verifies both hypotheses and exhibits a concrete repeated window.
+We also prove the conjectured product closure for the subfamily
+\(\ord_{r_1}(2)=n_1\), for every number of factors.
+\end{abstract}
+
+\section{Introduction}
+
+Etzion developed de Bruijn array codes and their shortened variants in
+Part I~\cite{etzion-part1}.  Blackburn, Chee, Etzion and Lao developed the
+linear theory in Part II~\cite{blackburn-part2}.  We use the definitions and
+folding convention of the version of record of Part II; where its
+numbering differs from the arXiv preprint, print numbering is used,
+with the arXiv numbers catalogued in \nolinkurl{NUMBERING_MAP.md} of
+the accompanying repository.
+
+An \((r_1,r_2;n_1,n_2)\) pseudo-random array code, or PRAC, is a collection
+of binary doubly periodic \(r_1\) by \(r_2\) arrays in which every nonzero
+binary \(n_1\) by \(n_2\) matrix occurs exactly once as a toroidal window,
+and which has the shift-and-add property.  When
+\(\gcd(r_1,r_2)=1\), a period-\(r_1r_2\) sequence is folded by placing
+symbol \(s_t\) at the unique coordinate \((i,j)\) satisfying
+\[
+ t\equiv i\pmod {r_1},\qquad t\equiv j\pmod {r_2}.
+\]
+Throughout, claims are proved by the argument supplied in the text or
+verified by the recorded computations that accompany this manuscript,
+as indicated in context.
+
+The current form of Conjecture 1 in Part II states the following.
+Suppose
+\[
+ n_1<r_1<2n_1
+\]
+and \(f_1,\ldots,f_\ell\) are irreducible binary polynomials of degree
+\(n_1n_2\) and exponent \(r_1r_2\), each of whose folded sequences forms an
+\((r_1,r_2;n_1,n_2)\)-PRAC.  Then the conjecture asserts that the product of
+any \(k\) of the factors yields an
+\((r_1,r_2;n_1,kn_2)\)-PRAC.
+
+The counterexample below satisfies the strict side condition.  It therefore
+resolves Conjecture 1 as stated, but makes no claim about a complete
+classification of product closure.
+
+\section{The evaluation criterion}
+
+We first put Theorem 6 of Part II (Theorem 47 in the arXiv version)
+into a form suited to a short certificate.  Let
+\[
+ h=n_1,\qquad w=n_2,\qquad n=hw,\qquad e=r_1r_2.
+\]
+Choose integers \(\mu,\nu\) with
+\(\mu r_1+\nu r_2=1\).  If \(\alpha_u\) is a root of \(f_u\), define
+\[
+ \beta_u=\alpha_u^{\nu r_2},\qquad
+ \gamma_u=\alpha_u^{\mu r_1}.
+\]
+Thus \(\alpha_u=\beta_u\gamma_u\), while \(\beta_u\) and \(\gamma_u\)
+have orders \(r_1\) and \(r_2\), respectively.
+
+\begin{lemma}[Evaluation form of Theorem 6]
+\label{lem:evaluation}
+For \(k\) selected factors, their product folding gives an
+\((r_1,r_2;h,kw)\)-PRAC if and only if the simultaneous evaluation map
+\[
+\begin{split}
+ \operatorname{ev}\colon
+ \{P\in\F_2[X,Y]:\deg_XP<h,\ \deg_YP<kw\}
+ &\longrightarrow \bigoplus_{u=1}^k\F_{2^n},\\
+ P&\longmapsto
+ \bigl(P(\beta_u,\gamma_u)\bigr)_{u=1}^k
+\end{split}
+\]
+is injective.
+\end{lemma}
+
+\begin{proof}
+For each pair \(0\leq i<h\), \(0\leq j<kw\), consider
+\[
+ v_{ij}=(\beta_1^i\gamma_1^j,\ldots,
+          \beta_k^i\gamma_k^j)
+ \in\bigoplus_{u=1}^k\F_{2^n}.
+\]
+Taking \(t_u=\Tr\), as Theorem 6 permits, the \(u\)-th block of
+row \((i,j)\) in the matrix of Theorem 6 consists of
+the absolute trace pairings of \(\beta_u^i\gamma_u^j\) with the basis
+\(1,\alpha_u,\ldots,\alpha_u^{n-1}\).  The trace pairing is nondegenerate.
+Consequently the matrix in Theorem 6 has full rank exactly when the
+\(kn\) vectors \(v_{ij}\) are linearly independent over \(\F_2\).  This is
+equivalent to injectivity of the displayed evaluation map.
+\end{proof}
+
+For one factor and a width-\(w\) window, Lemma~\ref{lem:evaluation} is the
+linear-independence criterion in Corollary 15 of Part II
+(arXiv Corollary 48).  We use the
+index range \(0\leq j<w\), as in the proof of that corollary.
+
+\section{The counterexample}
+
+\begin{theorem}
+\label{thm:counterexample}
+Let
+\[
+\begin{aligned}
+ f_1(X)&=X^{12}+X^{10}+X^6+X^5+X^3+X+1,\\
+ f_2(X)&=X^{12}+X^9+X^8+X^4+X^3+X+1.
+\end{aligned}
+\]
+Both \(f_1\) and \(f_2\) are irreducible of degree \(12\) and exponent
+\(585=5\cdot117\).  Folding the sequences generated by either factor
+yields a \((5,117;3,4)\)-PRAC, but folding the sequences generated by
+\(f_1f_2\) does not yield a \((5,117;3,8)\)-PRAC.
+\end{theorem}
+
+Since \(3<5<6\), Theorem~\ref{thm:counterexample} is a counterexample to
+Conjecture 1.
+
+\subsection{Irreducibility and exponent}
+
+We encode a binary polynomial by the integer whose bit \(i\) is the
+coefficient of \(X^i\).  Thus \(f_1=\mathtt{0x146b}\) and
+\(f_2=\mathtt{0x131b}\).  Rabin's irreducibility test gives
+\[
+ X^{2^{12}}\equiv X\pmod {f_u},
+\]
+and
+\[
+\gcd(f_u,X^{2^6}+X)=\gcd(f_u,X^{2^4}+X)=1
+\quad (u=1,2).
+\]
+The exact remainders needed to check the order are
+\[
+\begin{array}{c|cc}
+ &\bmod f_1&\bmod f_2\\ \hline
+X^{585}&\mathtt{0x001}&\mathtt{0x001}\\
+X^{195}&\mathtt{0xab8}&\mathtt{0x520}\\
+X^{117}&\mathtt{0x4a8}&\mathtt{0x7ce}\\
+X^{45} &\mathtt{0x19c}&\mathtt{0x73d}
+\end{array}
+\]
+The first row shows \(X^{585}\equiv1\pmod{f_u}\), while the remaining
+rows show \(X^{585/p}\not\equiv1\pmod{f_u}\) for each prime divisor
+\(p\in\{3,5,13\}\) of \(585\).  Together these prove that each
+residue class of \(X\) has exact order \(585\).
+
+\subsection{The two single-factor tests}
+
+Work in
+\[
+ K=\F_2[a]/(f_1(a)).
+\]
+Direct polynomial reduction shows that \(a_2=a^{46}\) is a root of \(f_2\).
+We take \(\alpha_1=a\) and \(\alpha_2=a_2\).
+Use
+\[
+ 47\cdot5-2\cdot117=1
+\]
+and define
+\[
+ b=a^{351}=a_2^{351},\qquad
+ c_1=a^{235},\qquad c_2=a_2^{235}=a^{280}.
+\]
+The element \(b\) has order \(5\), so
+\[
+ F=\F_2(b)\cong
+ \F_2[B]/(B^4+B^3+B^2+B+1)=\F_{16}.
+\]
+Both \(c_1\) and \(c_2\) have degree three over \(F\).  Their distinct
+minimal polynomials over \(F\) are
+\[
+\begin{aligned}
+ m_1(Y)&=Y^3+(1+b+b^2+b^3)Y^2+b^2Y+(b^2+b^3),\\
+ m_2(Y)&=Y^3+(1+b+b^2+b^3)Y^2
+              +(1+b+b^3)Y+(b^2+b^3).
+\end{aligned}
+\]
+
+Put
+\[
+ U=\operatorname{span}_{\F_2}\{1,b,b^2\}\subset F.
+\]
+The binary \(3\) by \(4\) rectangle evaluates at \(X=b\) to the
+\(\F_2\)-space \(U[Y]_{<4}\).
+If a nonzero member of this space vanished at \(c_u\), it would have the
+form \(q\,m_u\), where
+\[
+ q=q_0+q_1b+q_2b^2\in U\setminus\{0\}.
+\]
+Requiring the \(b^3\)-coordinate of all four coefficients to vanish gives,
+for either \(m_u\),
+\[
+ q_0=0,\qquad q_0+q_2=0.
+\]
+The coefficient of \(Y\) then gives \(q_1+q_2=0\) for \(m_1\), or
+\(q_0+q_1+q_2=0\) for \(m_2\).  Hence \(q_0=q_1=q_2=0\), a contradiction.
+Lemma~\ref{lem:evaluation} therefore proves both single-factor PRAC claims.
+
+\subsection{A rectangle relation for the product}
+
+Multiplication in \(F[Y]\) gives
+\[
+\begin{aligned}
+ M(Y):=m_1(Y)m_2(Y)
+ &=Y^6+(1+b+b^2)Y^4+b^3Y^3\\
+ &\quad +(1+b^2+b^3)Y^2+(b+b^2)Y+(1+b^2+b^3).
+\end{aligned}
+\]
+Although \(M\) has coefficients outside \(U\), multiplication by \(Y+b\)
+cancels all \(b^3\)-coordinates:
+\[
+\begin{aligned}
+ A(Y):=(Y+b)M(Y)
+ &=Y^7+bY^6+(1+b+b^2)Y^5+(b+b^2)Y^4\\
+ &\quad+bY^3+(1+b)Y^2+Y+(1+b^2).
+\end{aligned}
+\]
+Thus \(A\in U[Y]_{<8}\setminus\{0\}\), and
+\[
+ A(c_1)=A(c_2)=0.
+\]
+Expressing each coefficient in the basis \(1,b,b^2\) produces the binary
+rectangle polynomial
+\[
+\boxed{
+\begin{aligned}
+P(X,Y)={}&1+Y+Y^2+Y^5+Y^7\\
+ &+X(Y^2+Y^3+Y^4+Y^5+Y^6)\\
+ &+X^2(1+Y^4+Y^5).
+\end{aligned}}
+\]
+It is nonzero, \(\deg_XP<3\), \(\deg_YP<8\), and
+\[
+ P(b,c_1)=P(b,c_2)=0.
+\]
+Lemma~\ref{lem:evaluation} now proves that the product fails.
+
+There is also a basis-free univariate certificate.  For a root
+\(\alpha_u\) of either factor,
+\[
+ \beta_u=\alpha_u^{351},\qquad
+ \gamma_u=\alpha_u^{235}.
+\]
+Reducing exponents modulo \(585\), the rectangle relation becomes
+\[
+\begin{aligned}
+ Q(Z)&=P(Z^{351},Z^{235})\pmod {Z^{585}-1}\\
+ &=1+Z^5+Z^6+Z^{117}+Z^{121}+Z^{122}
+   +Z^{235}+Z^{236}\\
+ &\quad+Z^{356}+Z^{470}+Z^{471}+Z^{472}+Z^{475}.
+\end{aligned}
+\]
+Direct binary polynomial division gives
+\[
+ Q(Z)\equiv0\pmod {f_1(Z)},\qquad
+ Q(Z)\equiv0\pmod {f_2(Z)}.
+\]
+This sparse identity is an independently checkable certificate of the
+rank failure; it uses neither a field basis nor a trace convention.
+
+\section{Exhaustive verification by a separate implementation}
+
+A separate implementation generated sequences directly from the binary
+linear recurrences, folded them using only the CRT rule, and exhaustively
+enumerated all windows.  It was written with knowledge of the claimed
+witness, but reuses no source code from the algebraic path and shares
+no finite-field, trace, determinant, or evaluation machinery with the
+proof above.
+
+For each single factor, the checker enumerated
+\[
+ \frac{2^{12}-1}{585}=7
+\]
+shift-orbit representatives and scanned all \(7\cdot585=4095\) windows.
+Every nonzero \(3\) by \(4\) binary matrix occurred exactly once, and no
+zero window occurred.
+
+For the product, the checker enumerated
+\[
+ \frac{2^{24}-1}{585}=28{,}679
+\]
+shift-orbit representatives and scanned
+\[
+ 28{,}679\cdot585=16{,}777{,}215=2^{24}-1
+\]
+windows.  The results were:
+\[
+\begin{array}{lr}
+\toprule
+\text{quantity}&\text{count}\\
+\midrule
+\text{distinct nonzero windows observed}&8{,}388{,}607\\
+\text{missing nonzero windows}&8{,}388{,}608\\
+\text{duplicate nonzero occurrences}&8{,}388{,}607\\
+\text{zero-window occurrences}&1\\
+\bottomrule
+\end{array}
+\]
+
+With rows written left to right, the window
+\[
+\begin{array}{c}
+11110001\\
+00010011\\
+11100011
+\end{array}
+\]
+occurs in two distinct shift orbits.  Using zero-based coordinates, its
+two frozen occurrences are
+\[
+\begin{array}{c|cc}
+\text{representative state}&\text{top}&\text{left}\\ \hline
+1&1&40\\
+8&4&28
+\end{array}
+\]
+The first missing nonzero window is
+\[
+\begin{array}{c}
+00100000\\
+00000000\\
+00000000
+\end{array},
+\]
+and an all-zero window occurs in representative state \(10781\) at
+\((\text{top},\text{left})=(4,14)\).
+
+The frozen JSON record has SHA-256
+\[
+\mathtt{ba098b857e2aeeccef726e3440736dd25969732cd6c0bac0cb984a43efaa3b97},
+\]
+and the checker has SHA-256
+\[
+\mathtt{ed84442dc519ff07fc24c27f00d4b91366011c89a24e70562349351875ba23f0}.
+\]
+The run used Python 3.12.13 on Linux and no randomness.  The complete
+record and checker are supplied as
+\nolinkurl{implementations/bruteforce/counterexample_frozen.json} and
+\nolinkurl{implementations/bruteforce/bruteforce.py}.
+
+\section{Why the side condition was not enough}
+
+The counterexample suggests a useful correction to the structural picture.
+We retain \(h,w,r_1,r_2,n\) from Section 2 and write
+\[
+ d=\ord_{r_1}(2).
+\]
+
+\begin{lemma}[Normalisation]
+\label{lem:normalisation}
+If one single factor passes and \(h<r_1<2h\), then
+\[
+ d=\varphi(r_1),\qquad h\leq d<2h.
+\]
+Consequently, after replacing each selected root by a binary Frobenius
+conjugate, all its \(r_1\)-components may be chosen equal:
+\[
+ \beta_1=\cdots=\beta_k=b.
+\]
+\end{lemma}
+
+\begin{proof}
+The single-factor basis contains
+\(1,\beta,\ldots,\beta^{h-1}\), so these powers are independent and
+\[
+ d=[\F_2(\beta):\F_2]\geq h.
+\]
+Since \(d\mid\varphi(r_1)\) and
+\(\varphi(r_1)\leq r_1-1<2h\), the positive integer
+\(\varphi(r_1)/d\) is less than two and hence equals one.
+Thus all primitive \(r_1\)-th roots form one Frobenius orbit, proving the
+normalisation claim.
+\end{proof}
+
+Let
+\[
+ F=\F_2(b)=\F_{2^d},\qquad
+ U=\operatorname{span}_{\F_2}\{1,b,\ldots,b^{h-1}\}.
+\]
+Let \(g_u(Y)\in F[Y]\) be the minimal polynomial of \(\gamma_u\) over
+\(F\), and put \(m=n/d\).  Since
+\(\alpha_u=b\gamma_u\) and \(K=\F_2(\alpha_u)\), one has
+\(F(\gamma_u)=K\); hence \(\deg g_u=m\).
+Distinct binary factors give distinct \(g_u\): equality would make
+\(\gamma_v\) an \(F\)-Frobenius conjugate of \(\gamma_u\), and therefore
+\(\alpha_v\) a binary Frobenius conjugate of \(\alpha_u\).
+
+The evaluation criterion now becomes the exact coefficient-space condition
+\[
+ U[Y]_{<kw}\cap
+ \left(\prod_{u=1}^k g_u(Y)\right)=\{0\},
+\]
+where the ideal is taken in \(F[Y]\).  The individual hypotheses are
+\[
+ U[Y]_{<w}\cap(g_u)=\{0\}.
+\]
+If \(d=h\), then \(U=F\), and ordinary degree counting proves product
+closure.  If \(d>h\), then \(U\) is only a proper additive subspace of
+\(F\), and \(m=hw/d<w\).  A low-degree multiple of
+\(\prod g_u\) can therefore have all its coefficients in \(U\).
+In Theorem~\ref{thm:counterexample}, \(d=4\), \(h=3\), \(m=3\), \(w=4\),
+and the multiplier is exactly \(Y+b\).
+
+\begin{theorem}[A product-closed subfamily]
+\label{thm:subfamily}
+Let \(h,w,r,s\) be positive integers such that
+\[
+ \gcd(r,s)=1,\qquad h<r<2h,\qquad
+ \ord_{rs}(2)=hw,\qquad \ord_r(2)=h.
+\]
+For every collection of \(k\) distinct irreducible binary polynomials of
+degree \(hw\) and exponent \(rs\), folding the sequences generated by their
+product yields an \((r,s;h,kw)\)-PRAC.
+\end{theorem}
+
+\begin{proof}
+Since \(\ord_r(2)=h\), while
+\(\ord_r(2)\mid\varphi(r)\leq r-1<2h\), we have
+\(\ord_r(2)=\varphi(r)\).  Thus all primitive order-\(r\) elements form one
+binary Frobenius orbit, and we may choose the roots so their order-\(r\)
+components all equal \(b\).  Here
+\[
+ F=\F_2(b)=\F_{2^h}
+\]
+and \(1,b,\ldots,b^{h-1}\) is a basis of \(F\), so \(U=F\).
+For each selected root, its order-\(s\) component \(\gamma_u\) has degree
+\[
+ [\F_{2^{hw}}:F]=w
+\]
+over \(F\).  The corresponding minimal polynomials \(g_u\in F[Y]\) are
+distinct, by the argument preceding the theorem.  A binary rectangle
+relation would give a polynomial \(A\in F[Y]\) of degree less than \(kw\)
+that vanishes at every \(\gamma_u\).  It would therefore be divisible by
+the product of the \(k\) distinct degree-\(w\) polynomials \(g_u\), which
+has degree \(kw\).  Hence \(A=0\), and then all binary rectangle
+coefficients are zero.  Lemma~\ref{lem:evaluation} completes the proof.
+\end{proof}
+
+Theorem~\ref{thm:subfamily} covers the sufficient-condition family in
+Theorem 5 of Part II (Theorem 30 in the arXiv version) under the
+conjecture's side condition.  It includes
+the motivating \((5,17;4,2)\) example and the
+\((3,7;2,3)\) exponent-\(21\) example.
+
+Lemma 17 of Part II (Lemma 44 in the arXiv version) does not prove
+this result.  That lemma concerns the
+paper's \(\vee\)-construction, with separate degree-\(n_1\),
+exponent-\(r_1\) and degree-\(n_2\), exponent-\(r_2\) factors.
+Conjecture 1 multiplies arbitrary degree-\(n_1n_2\),
+exponent-\(r_1r_2\) factors.  In the counterexample there is no
+degree-three subfield containing \(b\), so the required decomposition is
+absent.
+
+\section{Conclusion}
+
+Theorem~\ref{thm:counterexample} settles Conjecture 1 in the negative.
+The sparse polynomial \(P\) is a compact certificate: it is a
+nonzero member of the proposed \(3\) by \(8\) window space and vanishes at
+both selected evaluation pairs.  The separately written exhaustive recurrence computation confirms
+both single-factor hypotheses and the product failure.
+
+Theorem~\ref{thm:subfamily} of this note (unrelated to Theorem 4 of
+the published source paper, the join-construction result) is a
+sufficient condition for product closure: it covers the exponent-85
+motivating family and identifies a broad sufficient regime.  Outside
+that regime, the note gives a coefficient-space intersection
+criterion, not a complete classification: product closure is
+equivalent to
+\[
+ U[Y]_{<kw}\cap(\prod g_u)=\{0\}.
+\]
+This formulation may be useful for classifying the remaining parameters.
+
+\subsection*{AI-assistance disclosure}
+
+This research was produced by an AI research pipeline directed by
+Cathal Ryan Hynes at P.I.G.M.I.E. Ltd., Ireland.  From a research
+brief written by Anthropic's Claude (Fable), OpenAI's Sol Ultra, running
+in the ChatGPT web interface, found the counterexample and the
+sufficient-condition theorem; Fable separately rebuilt the entire
+verification, reusing no source code, and matched every count; a separate Sol Ultra
+session contributed two further audit rounds.  Cathal Ryan Hynes set the
+target and the verification standard, checked the certificate himself,
+and stands behind this release.  The exhaustive recurrence checker, the separate algebra
+implementation, the third finite-field implementation, the audit
+reimplementation, and the frozen outputs and hashes accompany this
+manuscript.  No claim is made beyond resolution of Conjecture 1 as
+stated in the version of record and the explicit sufficient-condition
+theorem proved here.
+
+\begin{thebibliography}{9}
+
+\bibitem{blackburn-part2}
+S.~R. Blackburn, Y.~M. Chee, T.~Etzion, and H.~Lao,
+\newblock On de Bruijn array codes, Part II: Pseudo-random array codes,
+\newblock \emph{IEEE Transactions on Information Theory},
+72(8):6204--6221, August 2026.
+\newblock doi:10.1109/TIT.2026.3686267.
+\newblock Also arXiv:2501.12124v4 (last revised 19 August 2025).
+
+\bibitem{etzion-part1}
+T.~Etzion,
+\newblock On de Bruijn array codes---Part I: Nonlinear codes,
+\newblock \emph{IEEE Transactions on Information Theory},
+71(2):1434--1449, 2025.
+\newblock doi:10.1109/TIT.2024.3518434.
+
+\end{thebibliography}
+
+\end{document}

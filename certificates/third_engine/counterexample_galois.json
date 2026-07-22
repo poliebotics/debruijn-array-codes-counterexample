@@ -1,0 +1,103 @@
+{
+  "claim_label": "algebraically indicated (independent third engine)",
+  "parameters": {
+    "divisibility": true,
+    "n1": 3,
+    "n2": 4,
+    "product_target": [
+      3,
+      8
+    ],
+    "r1": 5,
+    "r2": 117,
+    "side_condition": true
+  },
+  "product": {
+    "matrix_rows_binary": [
+      "000000010001000100110001",
+      "111100010011111101111010",
+      "101111100100111111100110",
+      "010101110000110001010101",
+      "110011111010111111111011",
+      "001000100100011000110110",
+      "001001100111111101000111",
+      "110010001110110011010101",
+      "111111001111111011111111",
+      "000000100010001001100011",
+      "111000100110111011110100",
+      "011111001000111111001101",
+      "101011100000100010101011",
+      "100111110101111111110111",
+      "010001001001110001101100",
+      "010011001111111010001110",
+      "111010101110111110001010",
+      "111110011111110111111111",
+      "000001000100010011000110",
+      "110001001100110111101000",
+      "111110010001111110011010",
+      "010111000001000101010111",
+      "001111101010111111101111",
+      "100010010010100011011000"
+    ],
+    "passes": false,
+    "theorem47_rank": 23,
+    "theorem47_size": 24
+  },
+  "provenance": {
+    "galois": "0.4.7",
+    "numpy": "2.3.5",
+    "platform": "Linux-6.12.13-x86_64-with-glibc2.39",
+    "python": "3.12.13 (main, Mar  3 2026, 14:59:34) [Clang 21.1.4 ]",
+    "randomness": "none",
+    "script_sha256": "ef0e70859fdec216446601783183496fee813e5ce67290a16c4daeb34be5376c"
+  },
+  "single_factors": [
+    {
+      "alpha_order": 585,
+      "corollary48_rank": 12,
+      "corollary48_size": 12,
+      "field_irreducible_polynomial": "x^12 + x^10 + x^6 + x^5 + x^3 + x + 1",
+      "irreducible": true,
+      "mask_hex": "0x146b",
+      "mu": 47,
+      "nu": -2,
+      "passes": true,
+      "polynomial": "x^12 + x^10 + x^6 + x^5 + x^3 + x + 1"
+    },
+    {
+      "alpha_order": 585,
+      "corollary48_rank": 12,
+      "corollary48_size": 12,
+      "field_irreducible_polynomial": "x^12 + x^9 + x^8 + x^4 + x^3 + x + 1",
+      "irreducible": true,
+      "mask_hex": "0x131b",
+      "mu": 47,
+      "nu": -2,
+      "passes": true,
+      "polynomial": "x^12 + x^9 + x^8 + x^4 + x^3 + x + 1"
+    }
+  ],
+  "sparse_relation": {
+    "both_zero": true,
+    "q_degree": 475,
+    "q_exponents": [
+      0,
+      5,
+      6,
+      117,
+      121,
+      122,
+      235,
+      236,
+      356,
+      470,
+      471,
+      472,
+      475
+    ],
+    "remainders": {
+      "0x131b": "0",
+      "0x146b": "0"
+    }
+  }
+}

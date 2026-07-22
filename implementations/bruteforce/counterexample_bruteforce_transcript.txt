@@ -1,0 +1,27 @@
+STATUS: VERIFIED BY BRUTE FORCE
+
+HYPOTHESES
+0x146b single: PASS; windows=4095; unique=4095; zero=0; duplicates=0; missing=0
+0x131b single: PASS; windows=4095; unique=4095; zero=0; duplicates=0; missing=0
+
+PRODUCT
+0x17bd455 product: FAIL; windows=16777215; orbits=28679; unique=8388607; zero=1; duplicates=8388607; missing=8388608; seconds=92.84013091200086
+collision rows=['11110001', '00010011', '11100011']
+collision occurrences=[{'codeword_index': 0, 'left': 40, 'representative_state': 1, 'top': 1}, {'codeword_index': 4, 'left': 28, 'representative_state': 8, 'top': 4}]
+zero occurrence={'codeword_index': 4935, 'left': 14, 'representative_state': 10781, 'top': 4}
+first missing rows=['00100000', '00000000', '00000000'] word=4
+
+COMMANDS
+python3 bruteforce.py --factor 0x146b --factor 0x131b --r1 5 --r2 117 --window-rows 3 --window-cols 8 --output counterexample_candidate_bruteforce.json
+python3 -m unittest -v test_bruteforce.CounterexampleWitnessTests
+python3 calibrate.py
+
+HASHES
+checker_sha256=ed84442dc519ff07fc24c27f00d4b91366011c89a24e70562349351875ba23f0
+full_scan_json_sha256=feb790a96209d2f93d894fec368b417998516d9ba65b66bc77ad067dbbf01d36
+calibration_json_sha256=9d563501adc180e1e05739d34e7af22d46e988f046168385aaaea5cad497f226
+frozen_json_sha256_pending=hash counterexample_frozen.json externally
+
+PYTHON=3.12.13 (main, Mar  3 2026, 14:59:34) [Clang 21.1.4 ]
+PLATFORM=Linux-6.12.13-x86_64-with-glibc2.39
+RANDOMNESS=none

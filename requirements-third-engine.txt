@@ -1,0 +1,4 @@
+# Optional independent computer-algebra cross-check only.
+# The two core implementations use the Python standard library alone.
+galois==0.4.7
+numpy==2.3.5

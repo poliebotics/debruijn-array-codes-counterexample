@@ -1,0 +1,72 @@
+{
+  "claim_label": "algebraically indicated",
+  "factor_ids": [
+    1,
+    19
+  ],
+  "global_seed": 13897757560366499617,
+  "matrix_rank": 23,
+  "matrix_rows_hex": [
+    "0x8c8880",
+    "0x5efc8f",
+    "0x67f27d",
+    "0xaa30ea",
+    "0xdff5f3",
+    "0x6c6244",
+    "0xe2fe64",
+    "0xab3713",
+    "0xff7f3f",
+    "0xc64440",
+    "0x2f7647",
+    "0xb3f13e",
+    "0xd51075",
+    "0xeffaf9",
+    "0x363922",
+    "0x717f32",
+    "0x51f757",
+    "0xffbf9f",
+    "0x632220",
+    "0x17b323",
+    "0x59f89f",
+    "0xea883a",
+    "0xf7f57c",
+    "0x1b1491"
+  ],
+  "matrix_sha256": "4f08860045a7ff6951d0e0423e20242083da7ff20d0f0ea244c2501179d1ccac",
+  "matrix_size": 24,
+  "polynomials_bitmask": [
+    "0x146b",
+    "0x131b"
+  ],
+  "polynomials_expression": [
+    "x^12 + x^10 + x^6 + x^5 + x^3 + x + 1",
+    "x^12 + x^9 + x^8 + x^4 + x^3 + x + 1"
+  ],
+  "product_k": 2,
+  "right_null_vector": "0x206632",
+  "single_filter_ranks": [
+    12,
+    12
+  ],
+  "source_sha256": {
+    "gf2.py": "32b0c6dd64c1d33ed547b8facd60f74f3fcdc18a629cf175c642848d4e53c7ad",
+    "prac_algebra.py": "ff8f74ead8318b6b15edc872b8eb33c30491daaf8c2a389e6b1a9b0d15f8e016",
+    "sweep.py": "b9d5d49c56ed5dd01c256c7fa4763829e4fed72c78c4b28a9bebeb8e8aabc39a",
+    "test_sweep.py": "e9f260f630b746716a6bb035d3b1fbe5f3836f2bf01a278a57ae7a5409889f72"
+  },
+  "subset_seed": 8587401873626005157,
+  "target_window": [
+    3,
+    8
+  ],
+  "tuple": {
+    "degree": 12,
+    "exponent": 585,
+    "factor_count": 24,
+    "n1": 3,
+    "n2": 4,
+    "r1": 5,
+    "r2": 117
+  },
+  "warning": "Requires independent brute-force verification"
+}

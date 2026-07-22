@@ -1,0 +1,88 @@
+{
+  "factors": [
+    {
+      "exponents": [
+        0,
+        1,
+        3,
+        5,
+        6,
+        10,
+        12
+      ],
+      "mask_hex": "0x146b",
+      "polynomial": "x^12 + x^10 + x^6 + x^5 + x^3 + x + 1"
+    },
+    {
+      "exponents": [
+        0,
+        1,
+        3,
+        4,
+        8,
+        9,
+        12
+      ],
+      "mask_hex": "0x131b",
+      "polynomial": "x^12 + x^9 + x^8 + x^4 + x^3 + x + 1"
+    }
+  ],
+  "provenance": {
+    "platform": "Linux-6.12.13-x86_64-with-glibc2.39",
+    "python": "3.12.13 (main, Mar  3 2026, 14:59:34) [Clang 21.1.4 ]",
+    "script_sha256": "ed84442dc519ff07fc24c27f00d4b91366011c89a24e70562349351875ba23f0"
+  },
+  "result": {
+    "characteristic_polynomial": "x^24 + x^22 + x^21 + x^20 + x^19 + x^17 + x^16 + x^15 + x^14 + x^12 + x^10 + x^6 + x^4 + x^2 + 1",
+    "claimed_period": 585,
+    "codeword_count": 28679,
+    "duplicate_nonzero_windows": 8388607,
+    "elapsed_seconds": 92.84013091200086,
+    "expected_codeword_count": 28679,
+    "expected_total_windows": 16777215,
+    "first_collision_occurrences": [
+      {
+        "codeword_index": 0,
+        "left": 40,
+        "representative_state": 1,
+        "top": 1
+      },
+      {
+        "codeword_index": 4,
+        "left": 28,
+        "representative_state": 8,
+        "top": 4
+      }
+    ],
+    "first_collision_rows": [
+      "11110001",
+      "00010011",
+      "11100011"
+    ],
+    "first_collision_word": 13093007,
+    "first_missing_rows": [
+      "00100000",
+      "00000000",
+      "00000000"
+    ],
+    "first_missing_word": 4,
+    "first_zero_occurrence": {
+      "codeword_index": 4935,
+      "left": 14,
+      "representative_state": 10781,
+      "top": 4
+    },
+    "implementation": "literal-recurrence-crt-v1",
+    "missing_nonzero_windows": 8388608,
+    "passed": false,
+    "polynomial_mask_hex": "0x17bd455",
+    "r1": 5,
+    "r2": 117,
+    "recurrence_degree": 24,
+    "total_windows": 16777215,
+    "unique_nonzero_windows": 8388607,
+    "window_cols": 8,
+    "window_rows": 3,
+    "zero_windows": 1
+  }
+}

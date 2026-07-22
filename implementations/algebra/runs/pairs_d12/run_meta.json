@@ -1,0 +1,34 @@
+{
+  "admissible_tuple_count": 88,
+  "claim_label": "algebraically indicated",
+  "counterexample_sha256": "47a15624d8b542f55e7da66101cf89c874ac9ebfdbaf04c289c2ca6dd3bcc697",
+  "csv_sha256": "ab774bfff4424b8149ea47bc9b35c4f9d0cfdde14b9aa11ba0e09faae1a1e024",
+  "finished_utc": "2026-07-21T01:11:20.113675+00:00",
+  "ledger_sha256": "c5a54ad22e2238df6aa1053559a43b7a7e9e7bd74fa09306d8ece925195ccd06",
+  "parameters": {
+    "complete_filter_limit": 10000,
+    "larger_budget": 1,
+    "max_degree": 12,
+    "max_k": 2,
+    "output": "runs/pairs_d12",
+    "pair_budget": 50000,
+    "progress_every": 0,
+    "sample_factors": 4096,
+    "seed": 13897757560366499617,
+    "triple_budget": 1
+  },
+  "platform": "Linux-6.12.13-x86_64-with-glibc2.39",
+  "python": "3.12.13",
+  "rows_written": 34,
+  "sampling": "Python random.Random(MT19937), tuple/k seeds derived by SHA-256",
+  "singular_subsets": 1,
+  "source_sha256": {
+    "gf2.py": "32b0c6dd64c1d33ed547b8facd60f74f3fcdc18a629cf175c642848d4e53c7ad",
+    "prac_algebra.py": "ff8f74ead8318b6b15edc872b8eb33c30491daaf8c2a389e6b1a9b0d15f8e016",
+    "sweep.py": "b9d5d49c56ed5dd01c256c7fa4763829e4fed72c78c4b28a9bebeb8e8aabc39a",
+    "test_sweep.py": "e9f260f630b746716a6bb035d3b1fbe5f3836f2bf01a278a57ae7a5409889f72"
+  },
+  "started_utc": "2026-07-21T01:11:18.261934+00:00",
+  "status": "stopped_on_singular_subset",
+  "subset_tests": 5516
+}

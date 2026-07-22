@@ -1,0 +1,49 @@
+OK example19-e21-single-1-3x7: expected=PASS observed=PASS; windows=63; codewords=3; zero=0; duplicates=0; missing=0; seconds=0.000394
+OK example19-e21-single-2-3x7: expected=PASS observed=PASS; windows=63; codewords=3; zero=0; duplicates=0; missing=0; seconds=0.000217
+OK example19-e21-product-3x7: expected=PASS observed=PASS; windows=4095; codewords=195; zero=0; duplicates=0; missing=0; seconds=0.015939
+OK example19-e21-single-1-7x3: expected=PASS observed=PASS; windows=63; codewords=3; zero=0; duplicates=0; missing=0; seconds=0.000272
+OK example19-e21-single-2-7x3: expected=PASS observed=PASS; windows=63; codewords=3; zero=0; duplicates=0; missing=0; seconds=0.000219
+OK example19-e21-product-7x3: expected=FAIL observed=FAIL; windows=4095; codewords=195; zero=63; duplicates=3969; missing=4032; seconds=0.025297
+OK example19-e63-single-1: expected=PASS observed=PASS; windows=63; codewords=1; zero=0; duplicates=0; missing=0; seconds=0.000318
+OK example19-e63-single-2: expected=PASS observed=PASS; windows=63; codewords=1; zero=0; duplicates=0; missing=0; seconds=0.000306
+OK example19-e63-product-failure: expected=FAIL observed=FAIL; windows=4095; codewords=65; zero=3; duplicates=3069; missing=3072; seconds=0.018960
+OK degree8-e85-single-1: expected=PASS observed=PASS; windows=255; codewords=3; zero=0; duplicates=0; missing=0; seconds=0.002115
+OK degree8-e85-single-2: expected=PASS observed=PASS; windows=255; codewords=3; zero=0; duplicates=0; missing=0; seconds=0.001213
+OK degree8-e85-single-3: expected=PASS observed=PASS; windows=255; codewords=3; zero=0; duplicates=0; missing=0; seconds=0.001115
+OK degree8-e85-single-4: expected=PASS observed=PASS; windows=255; codewords=3; zero=0; duplicates=0; missing=0; seconds=0.001216
+OK degree8-e85-single-5: expected=PASS observed=PASS; windows=255; codewords=3; zero=0; duplicates=0; missing=0; seconds=0.001018
+OK degree8-e85-single-6: expected=PASS observed=PASS; windows=255; codewords=3; zero=0; duplicates=0; missing=0; seconds=0.001013
+OK degree8-e85-single-7: expected=PASS observed=PASS; windows=255; codewords=3; zero=0; duplicates=0; missing=0; seconds=0.001015
+OK degree8-e85-single-8: expected=PASS observed=PASS; windows=255; codewords=3; zero=0; duplicates=0; missing=0; seconds=0.001242
+OK degree8-e85-pair-1-2: expected=PASS observed=PASS; windows=65535; codewords=771; zero=0; duplicates=0; missing=0; seconds=0.380293
+OK degree8-e85-pair-1-3: expected=PASS observed=PASS; windows=65535; codewords=771; zero=0; duplicates=0; missing=0; seconds=0.342285
+OK degree8-e85-pair-1-4: expected=PASS observed=PASS; windows=65535; codewords=771; zero=0; duplicates=0; missing=0; seconds=0.313157
+OK degree8-e85-pair-1-5: expected=PASS observed=PASS; windows=65535; codewords=771; zero=0; duplicates=0; missing=0; seconds=0.344222
+OK degree8-e85-pair-1-6: expected=PASS observed=PASS; windows=65535; codewords=771; zero=0; duplicates=0; missing=0; seconds=0.337484
+OK degree8-e85-pair-1-7: expected=PASS observed=PASS; windows=65535; codewords=771; zero=0; duplicates=0; missing=0; seconds=0.309457
+OK degree8-e85-pair-1-8: expected=PASS observed=PASS; windows=65535; codewords=771; zero=0; duplicates=0; missing=0; seconds=0.390596
+OK degree8-e85-pair-2-3: expected=PASS observed=PASS; windows=65535; codewords=771; zero=0; duplicates=0; missing=0; seconds=0.548677
+OK degree8-e85-pair-2-4: expected=PASS observed=PASS; windows=65535; codewords=771; zero=0; duplicates=0; missing=0; seconds=0.445154
+OK degree8-e85-pair-2-5: expected=PASS observed=PASS; windows=65535; codewords=771; zero=0; duplicates=0; missing=0; seconds=0.418128
+OK degree8-e85-pair-2-6: expected=PASS observed=PASS; windows=65535; codewords=771; zero=0; duplicates=0; missing=0; seconds=0.456582
+OK degree8-e85-pair-2-7: expected=PASS observed=PASS; windows=65535; codewords=771; zero=0; duplicates=0; missing=0; seconds=0.468494
+OK degree8-e85-pair-2-8: expected=PASS observed=PASS; windows=65535; codewords=771; zero=0; duplicates=0; missing=0; seconds=0.377358
+OK degree8-e85-pair-3-4: expected=PASS observed=PASS; windows=65535; codewords=771; zero=0; duplicates=0; missing=0; seconds=0.385403
+OK degree8-e85-pair-3-5: expected=PASS observed=PASS; windows=65535; codewords=771; zero=0; duplicates=0; missing=0; seconds=0.399716
+OK degree8-e85-pair-3-6: expected=PASS observed=PASS; windows=65535; codewords=771; zero=0; duplicates=0; missing=0; seconds=0.499419
+OK degree8-e85-pair-3-7: expected=PASS observed=PASS; windows=65535; codewords=771; zero=0; duplicates=0; missing=0; seconds=0.453189
+OK degree8-e85-pair-3-8: expected=PASS observed=PASS; windows=65535; codewords=771; zero=0; duplicates=0; missing=0; seconds=0.471148
+OK degree8-e85-pair-4-5: expected=PASS observed=PASS; windows=65535; codewords=771; zero=0; duplicates=0; missing=0; seconds=0.486665
+OK degree8-e85-pair-4-6: expected=PASS observed=PASS; windows=65535; codewords=771; zero=0; duplicates=0; missing=0; seconds=0.437912
+OK degree8-e85-pair-4-7: expected=PASS observed=PASS; windows=65535; codewords=771; zero=0; duplicates=0; missing=0; seconds=0.457691
+OK degree8-e85-pair-4-8: expected=PASS observed=PASS; windows=65535; codewords=771; zero=0; duplicates=0; missing=0; seconds=0.414412
+OK degree8-e85-pair-5-6: expected=PASS observed=PASS; windows=65535; codewords=771; zero=0; duplicates=0; missing=0; seconds=0.433932
+OK degree8-e85-pair-5-7: expected=PASS observed=PASS; windows=65535; codewords=771; zero=0; duplicates=0; missing=0; seconds=0.544494
+OK degree8-e85-pair-5-8: expected=PASS observed=PASS; windows=65535; codewords=771; zero=0; duplicates=0; missing=0; seconds=0.450603
+OK degree8-e85-pair-6-7: expected=PASS observed=PASS; windows=65535; codewords=771; zero=0; duplicates=0; missing=0; seconds=0.414639
+OK degree8-e85-pair-6-8: expected=PASS observed=PASS; windows=65535; codewords=771; zero=0; duplicates=0; missing=0; seconds=0.446143
+OK degree8-e85-pair-7-8: expected=PASS observed=PASS; windows=65535; codewords=771; zero=0; duplicates=0; missing=0; seconds=0.500887
+
+OVERALL: PASS
+cases=45
+json_sha256_pending=hash the completed calibration.json externally

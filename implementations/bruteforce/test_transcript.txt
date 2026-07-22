@@ -1,0 +1,23 @@
+COMMAND: python3 -m unittest -v test_bruteforce.py
+
+test_frozen_zero_window_directly_from_recurrence (test_bruteforce.CounterexampleWitnessTests.test_frozen_zero_window_directly_from_recurrence) ... ok
+test_two_distinct_recurrence_orbits_have_the_frozen_collision (test_bruteforce.CounterexampleWitnessTests.test_two_distinct_recurrence_orbits_have_the_frozen_collision) ... ok
+test_crt_grid_matches_paper_example_1 (test_bruteforce.LiteralMechanicsTests.test_crt_grid_matches_paper_example_1) ... ok
+test_degree_8_exponent_85_count (test_bruteforce.LiteralMechanicsTests.test_degree_8_exponent_85_count) ... ok
+test_fold_matches_paper_example_1 (test_bruteforce.LiteralMechanicsTests.test_fold_matches_paper_example_1) ... ok
+test_optimized_window_extraction_matches_literal_arrays (test_bruteforce.LiteralMechanicsTests.test_optimized_window_extraction_matches_literal_arrays) ... ok
+test_paper_example_3_exact_cycles_up_to_shift (test_bruteforce.LiteralMechanicsTests.test_paper_example_3_exact_cycles_up_to_shift) ... ok
+test_recurrence_equation_1_convention (test_bruteforce.LiteralMechanicsTests.test_recurrence_equation_1_convention) ... ok
+test_streaming_fold_matches_materialized_sequences (test_bruteforce.LiteralMechanicsTests.test_streaming_fold_matches_materialized_sequences) ... ok
+test_all_degree_8_exponent_85_singles_and_pairs (test_bruteforce.PaperGroundTruthTests.test_all_degree_8_exponent_85_singles_and_pairs) ... ok
+test_example_19_degree_6_exponent_21 (test_bruteforce.PaperGroundTruthTests.test_example_19_degree_6_exponent_21) ... ok
+test_example_19_degree_6_primitive_failure (test_bruteforce.PaperGroundTruthTests.test_example_19_degree_6_primitive_failure) ... ok
+
+----------------------------------------------------------------------
+Ran 12 tests in 11.235s
+
+OK
+
+Python: 3.12.13 (main, Mar 3 2026, 14:59:34) [Clang 21.1.4]
+Platform: Linux-6.12.13-x86_64-with-glibc2.39
+Randomness: none

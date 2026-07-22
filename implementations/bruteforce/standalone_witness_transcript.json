@@ -1,0 +1,40 @@
+{
+  "collision_rows": [
+    "11110001",
+    "00010011",
+    "11100011"
+  ],
+  "occurrences": [
+    {
+      "left": 40,
+      "representative_state": 1,
+      "top": 1
+    },
+    {
+      "left": 28,
+      "representative_state": 8,
+      "top": 4
+    }
+  ],
+  "orbits_1_and_8_disjoint": true,
+  "periods": [
+    585,
+    585,
+    585
+  ],
+  "platform": "Linux-6.12.13-x86_64-with-glibc2.39",
+  "product_mask_hex": "0x17bd455",
+  "python": "3.12.13 (main, Mar  3 2026, 14:59:34) [Clang 21.1.4 ]",
+  "randomness": "none",
+  "sequence_sha256": {
+    "1": "2a7ab9900e22cb3a976659a09cefc18bb8b6544aea007f92f9b2604c9a44bd19",
+    "10781": "2ff8d7eb826f43a98d64573896b8099b39e4f6b0ba6949b0233d20cc98711c59",
+    "8": "e9aa7b74b5fb4fe2d6c7a27e6f453b525e959838c92735a47e78e415d7182ab4"
+  },
+  "status": "verified by direct recurrence recheck",
+  "zero_occurrence": {
+    "left": 14,
+    "representative_state": 10781,
+    "top": 4
+  }
+}

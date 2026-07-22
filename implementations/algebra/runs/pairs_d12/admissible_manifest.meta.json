@@ -1,0 +1,13 @@
+{
+  "admissible_tuple_count": 88,
+  "claim_label": "machine-generated coverage accounting",
+  "frozen_ledger_file": "ledger.jsonl",
+  "frozen_ledger_sha256": "c5a54ad22e2238df6aa1053559a43b7a7e9e7bd74fa09306d8ece925195ccd06",
+  "generator_file": "make_admissible_manifest.py",
+  "generator_sha256": "3c0c38f4d1fe48a81ae0bc4213c86454385b7ba249ade6039f64576912f71128",
+  "manifest_file": "admissible_manifest.csv",
+  "manifest_sha256": "2bddecc200198b33d82928f5a3da48141b5ee4ada6fd7b2be6716e980e097a38",
+  "max_degree": 12,
+  "not_reached_after_verified_candidate": 54,
+  "tested_before_stop": 34
+}
